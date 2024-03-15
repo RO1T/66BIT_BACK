@@ -1,4 +1,4 @@
-# 66BIT_BACK
+# 66BIT_TASK
  
 # Что необходимо для работы:
 Frontend Next (https://github.com/RO1T/66BIT_FRONT)
