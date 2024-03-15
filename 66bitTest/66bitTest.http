@@ -1,0 +1,6 @@
+@_66bitTest_HostAddress = http://localhost:5162
+
+GET {{_66bitTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
