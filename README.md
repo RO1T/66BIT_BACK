@@ -2,7 +2,9 @@
  
 # Что необходимо для работы:
 Frontend Next (https://github.com/RO1T/66BIT_FRONT)
+
 Backend ASP.NET WebAPI (https://github.com/RO1T/66BIT_BACK)
+
 PostgreSQL - postgres user
 
 # Демонстрация работы
