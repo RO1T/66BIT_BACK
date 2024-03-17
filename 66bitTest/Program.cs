@@ -1,4 +1,5 @@
 using Football.BusinessLogic.Services;
+using Football.Core.Abstractions;
 using Football.Data.Access;
 using Football.Data.Access.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,10 +19,8 @@ builder.Services.AddDbContext<FootballDbContext>(
 builder.Services.AddScoped<IFootballService, FootballService>();
 builder.Services.AddScoped<IFootballRepo, FootballRepo>();
 
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -29,11 +28,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.UseCors((x) =>
 {
     x.WithHeaders().AllowAnyHeader();

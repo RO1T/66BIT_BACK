@@ -1,32 +1,27 @@
-﻿using Football.Core.Models;
-using Football.Data.Access.Repositories;
+﻿using Football.Core.Abstractions;
+using Football.Core.Models;
 
 namespace Football.BusinessLogic.Services
 {
-    public class FootballService : IFootballService
+    public class FootballService(IFootballRepo footballRepo) : IFootballService
     {
-        private readonly IFootballRepo footballRepo;
+        private readonly IFootballRepo footballRepo = footballRepo;
 
-        public FootballService(IFootballRepo footballRepo)
+        public async Task<List<FootballPlayer>> AsyncGetPlayers()
         {
-            this.footballRepo = footballRepo;
+            return await footballRepo.AsyncGet();
         }
-
-        public async Task<List<FootballPlayer>> GetPlayers()
+        public async Task<Guid> AsyncCreatePlayer(FootballPlayer player)
         {
-            return await footballRepo.Get();
+            return await footballRepo.AsyncCreate(player);
         }
-        public async Task<Guid> CreatePlayer(FootballPlayer player)
+        public async Task<Guid> AsyncUpdatePlayer(Guid id, string firstName, string lastName, string gender, DateTime dateOfBith, string teamName, string country)
         {
-            return await footballRepo.Create(player);
+            return await footballRepo.AsyncUpdate(id, firstName, lastName, gender, dateOfBith, teamName, country);
         }
-        public async Task<Guid> UpdatePlayer(Guid id, string firstname, string lastname, string gender, DateTime dateofbith, string teamname, string country)
+        public async Task<Guid> AsyncDeletePlayer(Guid id)
         {
-            return await footballRepo.Update(id, firstname, lastname, gender, dateofbith, teamname, country);
-        }
-        public async Task<Guid> DeletePlayer(Guid id)
-        {
-            return await footballRepo.Delete(id);
+            return await footballRepo.AsyncDelete(id);
         }
     }
 }

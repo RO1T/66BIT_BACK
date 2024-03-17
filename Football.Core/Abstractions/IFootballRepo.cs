@@ -1,12 +1,10 @@
 ﻿using Football.Core.Models;
 
-namespace Football.Data.Access.Repositories
+namespace Football.Core.Abstractions;
+public interface IFootballRepo
 {
-    public interface IFootballRepo
-    {
-        Task<Guid> Create(FootballPlayer player);
-        Task<Guid> Delete(Guid id);
-        Task<List<FootballPlayer>> Get();
-        Task<Guid> Update(Guid id, string firstname, string lastname, string gender, DateTime dateofbith, string teamname, string country);
-    }
+    Task<Guid> AsyncCreate(FootballPlayer player);
+    Task<Guid> AsyncDelete(Guid id);
+    Task<List<FootballPlayer>> AsyncGet();
+    Task<Guid> AsyncUpdate(Guid id, string fristName, string lastName, string gender, DateTime dateOfBirth, string teamName, string country);
 }

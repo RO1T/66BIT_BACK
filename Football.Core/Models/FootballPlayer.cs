@@ -1,19 +1,15 @@
-﻿using System.Globalization;
-using System.Reflection;
-
-namespace Football.Core.Models
+﻿namespace Football.Core.Models
 {
     public class FootballPlayer
     {
-        // to do enum in Gender
-        private FootballPlayer(Guid id, string firstname, string lastname, string gender, DateTime dateofbith, string teamname, string country) 
+        private FootballPlayer(Guid id, string firstName, string lastName, string gender, DateTime dateOfBith, string teamName, string country) 
         { 
             Id = id;
-            FirstName = firstname;
-            LastName = lastname;
+            FirstName = firstName;
+            LastName = lastName;
             Gender = gender;
-            DateOfBirth = dateofbith;
-            TeamName = teamname;
+            DateOfBirth = dateOfBith;
+            TeamName = teamName;
             Country = country;
             
         }
@@ -23,20 +19,34 @@ namespace Football.Core.Models
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string TeamName { get; set; }
-        // 
         public string Country { get; set; }
 
-        public static (FootballPlayer player, string Error) Create(Guid id, string firstname, string lastname, string gender, DateTime dateofbith, string teamname, string country)
+        public static (FootballPlayer player, string Error) Create(Guid id, string firstName, string lastName, string gender, DateTime dateOfBith, string teamName, string country)
         {
-            // to do validation for creating model
             var error = string.Empty;
-            if (string.IsNullOrEmpty(firstname))
+            if (string.IsNullOrEmpty(firstName))
             {
                 error = "Name is required";
             }
-           
+            else if (string.IsNullOrEmpty(lastName))
+            {
+                error = "LastName is required";
+            }
+            else if(string.IsNullOrEmpty(gender))
+            {
+                error = "Gender is required";
+            }
+            else if(string.IsNullOrEmpty(teamName))
+            {
+                error = "TeamName is required";
+            }
+            else if(string.IsNullOrEmpty(country))
+            {
+                error = "Country is required";
+            }
 
-            var player = new FootballPlayer(id,firstname, lastname, gender, dateofbith, teamname, country);
+
+            var player = new FootballPlayer(id,firstName, lastName, gender, dateOfBith, teamName, country);
             return (player, error);
         }
     }
